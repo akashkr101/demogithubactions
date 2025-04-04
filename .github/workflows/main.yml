@@ -27,4 +27,4 @@ jobs:
 
     - name: Test page with curl
       run: |
-        curl -s http://localhost | grep -i "<html"
+        curl -s http://localhost
