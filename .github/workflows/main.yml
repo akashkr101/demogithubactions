@@ -1,0 +1,29 @@
+name: Demo NGINX Deployment
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install NGINX
+      run: |
+        sudo apt update
+        sudo apt install -y nginx
+        sudo systemctl start nginx
+        sudo systemctl status nginx
+
+    - name: Copy index.html to NGINX web root
+      run: |
+        sudo cp index.html /var/www/html/index.html
+        sudo chmod 644 /var/www/html/index.html
+
+    - name: Test page with curl
+      run: |
+        curl -s http://localhost | grep -i "<html"
