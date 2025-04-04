@@ -23,6 +23,7 @@ jobs:
       run: |
         sudo cp index.html /var/www/html/index.html
         sudo chmod 644 /var/www/html/index.html
+        sudo cat /var/www/html/index.html
 
     - name: Test page with curl
       run: |
